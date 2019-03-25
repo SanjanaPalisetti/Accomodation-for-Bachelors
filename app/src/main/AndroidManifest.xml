@@ -15,7 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DP_Activity"></activity>
+        <activity android:name=".ScratchCrad" />
+        <activity android:name=".Review2" />
+        <activity android:name=".UsersActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".Review" />
+        <activity android:name=".DP_Activity" />
         <activity
             android:name=".UserProfile"
             android:label="@string/title_activity_user_profile"
@@ -26,7 +31,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Dashboard_common"
-            android:label="@string/title_activity_dashboard_common"
+            android:label="Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".Search" />

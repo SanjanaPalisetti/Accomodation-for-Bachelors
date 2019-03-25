@@ -1,29 +1,22 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-    <!--tools:context=".Dashboard_common"-->
-    <!--tools:showIn="@layout/app_bar_dashboard_common">-->
-    <!---->
-
-<!--</android.support.constraint.ConstraintLayout>-->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-
     tools:context="com.example.Bachelors.Dashboard_common">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content_frame">
 
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -39,26 +32,72 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="60dp"
                     android:orientation="vertical">
+
+                    <android.support.v4.view.ViewPager
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:id="@+id/viewpage">
+
+                    </android.support.v4.view.ViewPager>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cv">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/coupons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/grab_a_coupon"
+                        android:background="@drawable/button_style2"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                        android:textColor="#ffffff" />
+
+                    <Button
+                        android:id="@+id/Scratch_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/scratchCard"
+                        android:background="@drawable/button_style2"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                        android:textColor="#ffffff" />
+
+                    <SearchView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="20dp" />
 
                     <ImageView
                         android:id="@+id/person_photo1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="450dp"
                         android:baselineAligned="false"
                         android:src="@drawable/appartment1" />
 
-                    <!--<Button-->
-                        <!--android:id="@+id/cost1"-->
-                        <!--style="@style/Widget.AppCompat.Button"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_marginTop="16dp"-->
-                        <!--android:background="@drawable/button_style"-->
-                        <!--android:text="2000"-->
-                        <!--android:textAppearance="@style/TextAppearance.AppCompat.Button"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--/>-->
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner1"
+                        android:textAppearance="@android:style/TextAppearance.Large" />
+
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Name: Ranjana k-->
+                    <!--Place: Bangalore"/>-->
 
                 </LinearLayout>
 
@@ -77,8 +116,15 @@
                     <ImageView
                         android:id="@+id/person_photo2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="450dp"
                         android:src="@drawable/appartment2" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner2"
+                        android:textAppearance="@android:style/TextAppearance.Large" />
 
                 </LinearLayout>
 
@@ -97,8 +143,15 @@
                     <ImageView
                         android:id="@+id/person_photo3"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="450dp"
                         android:src="@drawable/appartment3" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner3"
+                        android:textAppearance="@android:style/TextAppearance.Large" />
 
                 </LinearLayout>
 
@@ -117,8 +170,15 @@
                     <ImageView
                         android:id="@+id/person_photo4"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="450dp"
                         android:src="@drawable/appartment4" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner4"
+                        android:textAppearance="@android:style/TextAppearance.Large" />
 
                 </LinearLayout>
 
@@ -138,18 +198,22 @@
                     <ImageView
                         android:id="@+id/person_photo5"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="450dp"
                         android:src="@drawable/appartment5" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner5"
+                        android:textAppearance="@android:style/TextAppearance.Large" />
 
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
+
     </ScrollView>
-</LinearLayout>
-
-
-
-
-
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

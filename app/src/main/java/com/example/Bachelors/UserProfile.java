@@ -21,6 +21,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
+
 
 
 public class UserProfile extends AppCompatActivity implements Serializable {
@@ -89,7 +95,40 @@ public class UserProfile extends AppCompatActivity implements Serializable {
         addo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int check = upload();
+
+         int check;
+                check = upload();
+
+                    if(Name.getText().toString().isEmpty() && Contact.getText().toString().isEmpty() && Email_Id.getText().toString().isEmpty() && isValidMobile(Contact.getText().toString())){
+
+                        if(Name.getText().toString().isEmpty())
+                        {
+                            Name.setError( "First name is required!" );
+                        }
+
+                        if(Contact.getText().toString().isEmpty())
+                        {
+                            Contact.setError( "Contact is required!" );
+                        }
+
+                        if(Email_Id.getText().toString().isEmpty())
+                        {
+                            Email_Id.setError( "email id is required!" );
+
+                        }
+                        if(isEmailValid(Contact.getText().toString()))
+                        {
+                            Contact.setError("Invalid Contact");
+                        }
+
+                        if(isValidMobile(Contact.getText().toString()))
+                        {
+                            Contact.setError("Invalid Email");
+                        }
+                      check=0;
+                    }
+
+                   // check = upload();
                 if(check==1)
                     startActivity(new Intent (UserProfile.this,DP_Activity.class));
                 else
@@ -97,6 +136,32 @@ public class UserProfile extends AppCompatActivity implements Serializable {
             }
         });
 
+    }
+    private boolean isValidMobile(String phone) {
+        boolean check;
+        if(!Pattern.matches("[a-zA-Z]+", phone)) {
+            if(phone.length() != 10) {
+                // if(phone.length() != 10) {
+                check = false;
+                //contact.setError("Not Valid Number");
+            } else {
+                check = true;
+            }
+        } else {
+            check=false;
+        }
+        return !check;
+    }
+    private boolean isEmailValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
     }
 
     private void addUser() {

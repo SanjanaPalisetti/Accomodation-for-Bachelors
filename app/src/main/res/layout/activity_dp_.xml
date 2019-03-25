@@ -14,12 +14,17 @@
 
     <Button
         android:id="@+id/Upload_ID"
-        android:layout_width="112dp"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="369dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="353dp"
         android:background="@drawable/button_style2"
         android:text="Upload"
+        android:textColor="#ffffff"
         android:textColorHint="@color/colorPrimaryDark" />
 
     <TextView
@@ -31,11 +36,12 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="119dp"
-        android:layout_height="61dp"
+        android:layout_width="152dp"
+        android:layout_height="59dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="275dp"
+        android:layout_marginBottom="277dp"
         android:background="@drawable/button_style"
         android:text="REGISTER USER"
+        android:textColor="#ffffff"
         android:textColorHint="@color/colorPrimaryDark" />
 </RelativeLayout>

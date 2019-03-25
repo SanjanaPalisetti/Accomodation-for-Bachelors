@@ -1,14 +1,14 @@
 package com.example.Bachelors;
 
-public class userdetails {
+public class UserDetailsApp {
     String username , type;
 
-    public userdetails(String username, String type) {
+    public UserDetailsApp(String username, String type) {
         this.username = username;
         this.type = type;
     }
 
-    public userdetails() {
+    public UserDetailsApp() {
     }
 
     public String getUsername() {

@@ -168,6 +168,8 @@ public class UserProfileEdit extends AppCompatActivity
 
                 }
 
+//                else if(StringUtils.isCreatable(lastnameString))
+
                 else {
 
                     Toast.makeText(UserProfileEdit.this, "Enter valid details", Toast.LENGTH_LONG).show();
@@ -223,8 +225,8 @@ public class UserProfileEdit extends AppCompatActivity
                 startActivity(a);
                 break;
             case R.id.nav_chat :
-//                Intent c = new Intent(Dashboard_common.this,Dashboard_common.class);
-//                startActivity(a);
+                Intent c = new Intent(this,UsersActivity.class);
+                startActivity(c);
                 break;
             case R.id.nav_dashboard :
                 Intent d = new Intent(this,Dashboard_common.class);
@@ -240,12 +242,12 @@ public class UserProfileEdit extends AppCompatActivity
                 startActivity(p);
                 break;
             case R.id.nav_sign_out :
-                Intent l = new Intent(this,LoginActivity.class);
+                Intent l = new Intent(this,MainActivity.class);
                 startActivity(l);
                 break;
             case R.id.nav_suggestions :
-//                Intent a = new Intent(Dashboard_common.this,Dashboard_common.class);
-//                startActivity(a);
+                Intent s = new Intent(UserProfileEdit.this,Review.class);
+                startActivity(s);
                 break;
 
         }
