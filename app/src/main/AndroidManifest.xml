@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ScratchCrad" />
-        <activity android:name=".Review2" />
         <activity android:name=".UsersActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".Review" />
