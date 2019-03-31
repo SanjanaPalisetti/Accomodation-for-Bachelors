@@ -15,6 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".TransactionHistory"
+            android:label="@string/title_activity_transaction_history"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Payment"
+            android:label="@string/title_activity_payment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Balance"
+            android:label="@string/title_activity_balance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Wallet"
+            android:label="@string/title_activity_wallet"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ScratchCrad" />
         <activity android:name=".UsersActivity" />
         <activity android:name=".ChatActivity" />

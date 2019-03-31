@@ -2,12 +2,13 @@ package com.example.Bachelors;
 
 public class UserReg {
     private String Name, Contanct, Email, address, Age, Sex , type;
+    private int Balance;
 
     public UserReg() {
 
     }
 
-    public UserReg(String name, String contanct, String email, String address, String age, String sex, String type ) {
+    public UserReg(String name, String contanct, String email, String address, String age, String sex, String type, int balance ) {
         Name = name;
         Contanct = contanct;
         Email = email;
@@ -15,6 +16,7 @@ public class UserReg {
         Age = age;
         Sex = sex;
         this.type = type;
+        Balance = balance;
     }
 
     public String getName() {
@@ -72,5 +74,13 @@ public class UserReg {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getBalance() {
+        return Balance;
+    }
+
+    public void setBalance(int balance) {
+        Balance = balance;
     }
 }

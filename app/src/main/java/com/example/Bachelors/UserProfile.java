@@ -193,6 +193,7 @@ public class UserProfile extends AppCompatActivity implements Serializable {
             Details.setAddress(Address.getText().toString());
             Details.setAge(Age.getText().toString());
             Details.setSex(spinner.getSelectedItem().toString().trim());
+            Details.setBalance(0);
 
 
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

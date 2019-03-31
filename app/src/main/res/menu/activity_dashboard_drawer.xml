@@ -20,6 +20,10 @@
             android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_notifications"
             android:title="Notifications" />
+        <item
+            android:id="@+id/nav_wallet"
+            android:icon="@drawable/ic_dollar"
+            android:title="My Wallet" />
     </group>
 
     <item android:title="Owner">

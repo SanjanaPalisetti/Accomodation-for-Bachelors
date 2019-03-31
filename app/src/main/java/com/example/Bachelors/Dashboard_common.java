@@ -229,6 +229,10 @@ public class Dashboard_common extends AppCompatActivity
                 Intent sug = new Intent(this,Review.class);
                 startActivity(sug);
                 break;
+            case R.id.nav_wallet :
+                Intent w = new Intent(Dashboard_common.this,Wallet.class);
+                startActivity(w);
+                break;
 
         }
 
