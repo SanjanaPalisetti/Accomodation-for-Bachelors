@@ -162,12 +162,14 @@ public class SignupActivity extends AppCompatActivity implements Serializable {
             DatabaseReference databaseReference = firebaseDatabase.getReference("SignInDetails");
 
 
-
             //DatabaseReference root = databaseReference.child("user");
             databaseReference.child(mUser.getUid()).push().setValue(details);
 
             return 1;
-        }catch (NullPointerException e){
+
+        }
+
+        catch (NullPointerException e) {
             return 0;
         }
 

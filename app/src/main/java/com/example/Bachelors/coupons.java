@@ -20,6 +20,7 @@ public class coupons extends Fragment {
     Button button3;
     Button button4;
     Button button5;
+    int check = 0;
 
     @Nullable
     @Override
@@ -34,7 +35,12 @@ public class coupons extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
+                if(check == 0) {
+                    Toast.makeText(getActivity(), "Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
+                    check = 1;
+                }
+                else
+                    Toast.makeText(getActivity(), "Coupon can be applied only once!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -42,32 +48,48 @@ public class coupons extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
-            }
+                if(check == 0) {
+                    Toast.makeText(getActivity(), "Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
+                    check = 1;
+                }
+                else
+                    Toast.makeText(getActivity(), "Coupon can be applied only once!", Toast.LENGTH_LONG).show();            }
         });
 
         button3 = (Button)view.findViewById(R.id.button_coupon3);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
-            }
+                if(check == 0) {
+                    Toast.makeText(getActivity(), "Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
+                    check = 1;
+                }
+                else
+                    Toast.makeText(getActivity(), "Coupon can be applied only once!", Toast.LENGTH_LONG).show();            }
         });
 
         button4 = (Button)view.findViewById(R.id.button_coupon4);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
-            }
+                if(check == 0) {
+                    Toast.makeText(getActivity(), "Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
+                    check = 1;
+                }
+                else
+                    Toast.makeText(getActivity(), "Coupon can be applied only once!", Toast.LENGTH_LONG).show();            }
         });
 
         button5 = (Button)view.findViewById(R.id.button_coupon5);
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
-            }
+                if(check == 0) {
+                    Toast.makeText(getActivity(), "Coupon is applied!!!!!!", Toast.LENGTH_LONG).show();
+                    check = 1;
+                }
+                else
+                    Toast.makeText(getActivity(), "Coupon can be applied only once!", Toast.LENGTH_LONG).show();            }
         });
 
     }

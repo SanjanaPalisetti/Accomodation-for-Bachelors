@@ -96,41 +96,47 @@ public class UserProfile extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
 
-         int check;
-                check = upload();
+         int check = 1;
 
                     if(Name.getText().toString().isEmpty() && Contact.getText().toString().isEmpty() && Email_Id.getText().toString().isEmpty() && isValidMobile(Contact.getText().toString())){
+                        Toast.makeText(UserProfile.this,"Enter details!",Toast.LENGTH_LONG).show();
+                        check = 0;
+                    }
 
-                        if(Name.getText().toString().isEmpty())
+                        else if(Name.getText().toString().isEmpty())
                         {
                             Name.setError( "First name is required!" );
+                            check = 0;
                         }
 
-                        if(Contact.getText().toString().isEmpty())
+                        else if(Contact.getText().toString().isEmpty())
                         {
                             Contact.setError( "Contact is required!" );
+                            check = 0;
                         }
 
-                        if(Email_Id.getText().toString().isEmpty())
+                        else if(Email_Id.getText().toString().isEmpty())
                         {
-                            Email_Id.setError( "email id is required!" );
+                            Email_Id.setError( "Email id is required!" );
+                            check = 0;
 
                         }
-                        if(isEmailValid(Contact.getText().toString()))
+                        if(isEmailValid(Email_Id.getText().toString()))
                         {
-                            Contact.setError("Invalid Contact");
+                            Email_Id.setError("Please enter the same email used to sign up!");
+                            check = 0;
                         }
 
                         if(isValidMobile(Contact.getText().toString()))
                         {
-                            Contact.setError("Invalid Email");
+                            Contact.setError("Invalid Contact Number");
+                            check = 0;
                         }
-                      check=0;
-                    }
 
-                   // check = upload();
-                if(check==1)
-                    startActivity(new Intent (UserProfile.this,DP_Activity.class));
+                if(check==1) {
+                    upload();
+                    startActivity(new Intent(UserProfile.this, DP_Activity.class));
+                }
                 else
                     Toast.makeText(UserProfile.this,"error",Toast.LENGTH_LONG).show();
             }
@@ -142,26 +148,18 @@ public class UserProfile extends AppCompatActivity implements Serializable {
         if(!Pattern.matches("[a-zA-Z]+", phone)) {
             if(phone.length() != 10) {
                 // if(phone.length() != 10) {
-                check = false;
+                return true;
                 //contact.setError("Not Valid Number");
             } else {
-                check = true;
+                return false;
             }
-        } else {
-            check=false;
-        }
-        return !check;
+        } else return true;
     }
     private boolean isEmailValid(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
+        if(email.equals(mUser.getEmail()))
             return false;
-        return pat.matcher(email).matches();
+        else
+            return true;
     }
 
     private void addUser() {
