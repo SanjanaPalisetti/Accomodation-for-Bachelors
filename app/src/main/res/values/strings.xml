@@ -153,7 +153,11 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="offers">Offers!!!</string>
+    <string name="action_app_info">App Info</string>
     <string name="coupons">coupons</string>
+    <string name="App_info">BASIC INFORMATION ABOUT THE APP:\n\nThis Application Bachelors can be used by any Tenants from different parts of the country to book the rooms for rentals purposes\nThe Details include:\n1)PROFILE - the user can change his/her Details\n2)CHATS - The owner/Tenant can start a conversation here to the desired person\n3)NOTIFICATIONS - The owner gets a notifications if his/her property is requested by a Tenant\n4)ADD PROPERTY - Here the owner can add any number of properties\n5)SUGGESTIONS - The users(Tenants) can review the properties they have rented and give their valuable feedbacks\n6)SIGNOUT - the Users can sign out from the device here present on the navigation bar
+\n\n* The app DOESNOT hold any resposibility if the password is shared with other users. This could be breach to the security of the owner\n* Users ABOVE 18 years are allowed to register\n
+</string>
     <string name="title_activity_coupons">Coupons</string>
     <string name="grab_a_coupon">Grab a Coupon!!!!!</string>
     <string name="owner4">Rooms in KOLKATA \nAverage Cost: 3499</string>

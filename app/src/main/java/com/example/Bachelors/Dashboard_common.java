@@ -250,7 +250,9 @@ public class Dashboard_common extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_app_info) {
+            Intent intent = new Intent(this,App_info.class);
+            startActivity(intent);
             return true;
         }
 

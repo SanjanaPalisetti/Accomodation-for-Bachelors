@@ -89,7 +89,6 @@ public class SignupActivity extends AppCompatActivity implements Serializable {
                     if((password).equals(password2)) {
                         register();
 
-
 //                        if((genre).equals("Tenant")) {
 ////                            Toast.makeText(SignupActivity.this, "Tenant added", Toast.LENGTH_SHORT).show();
 ////                            startActivity(new Intent(v.getContext(), RegistrationTenant.class));
@@ -99,16 +98,22 @@ public class SignupActivity extends AppCompatActivity implements Serializable {
 ////                            Toast.makeText(SignupActivity.this, "Owner added", Toast.LENGTH_SHORT).show();
 ////                            startActivity(new Intent(v.getContext(), ownerReg.class));
 //                        }
-
-
                     }
 
                     else{
-                        Toast.makeText(SignupActivity.this,"Passwords do not match!",Toast.LENGTH_LONG).show();
+                        editTextPassword.setError("Passwords must match!");
+                        editTextPassword2.setError("Passwords must match!");
+//                        Toast.makeText(SignupActivity.this,"Passwords do not match!",Toast.LENGTH_LONG).show();
                     }
                 }
 
                 else{
+                    if(TextUtils.isEmpty(name))
+                        editTextusername.setError("Username is required!");
+                    if(TextUtils.isEmpty(password)) {
+                        editTextPassword.setError("Password is required!");
+                        editTextPassword2.setError("Password is required!");
+                    }
                     Toast.makeText(SignupActivity.this,"Enter details",Toast.LENGTH_LONG).show();
                 }
 

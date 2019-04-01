@@ -15,10 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".App_info"></activity>
         <activity
             android:name=".TransactionHistory"
             android:label="@string/title_activity_transaction_history"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Payment"
             android:label="@string/title_activity_payment"
