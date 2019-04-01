@@ -159,7 +159,7 @@ public class SignupActivity extends AppCompatActivity implements Serializable {
             String sr = sp.getSelectedItem().toString().trim();
             details.setType(sr);
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference("User");
+            DatabaseReference databaseReference = firebaseDatabase.getReference("SignInDetails");
 
 
 

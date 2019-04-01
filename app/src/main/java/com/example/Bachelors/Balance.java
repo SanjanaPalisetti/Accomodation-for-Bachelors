@@ -110,14 +110,28 @@ public class Balance extends AppCompatActivity
             public void onClick(View v) {
                 //openDialogue();
 
-                //getting amount entered
-                input_money = Integer.parseInt(editText_add_money.getText().toString().trim());
+                //error handling
+                if(editText_add_money.getText().toString().trim().isEmpty())
+                    Toast.makeText(Balance.this,"Enter an amount to be paid!",Toast.LENGTH_LONG).show();
 
-                //changing value
-                balance += input_money;
-                databaseUsers.child(id).child("balance").setValue(balance);
-                display.setText("Rs. "+(balance));
-                editText_add_money.setText("");
+                else if(editText_add_money.getText().toString().trim().length()>3)
+                    Toast.makeText(Balance.this,"Maximum amount is 999",Toast.LENGTH_LONG).show();
+
+                else {
+                    //getting amount entered
+                    input_money = Integer.parseInt(editText_add_money.getText().toString().trim());
+
+                    //changing value
+                    balance += input_money;
+                    if(balance>5000)
+                        Toast.makeText(Balance.this,"Maximum balance possible is 5000",Toast.LENGTH_LONG).show();
+
+                    else {
+                        databaseUsers.child(id).child("balance").setValue(balance);
+                        display.setText("Rs. " + (balance));
+                        editText_add_money.setText("");
+                    }
+                }
             }
         });
 
