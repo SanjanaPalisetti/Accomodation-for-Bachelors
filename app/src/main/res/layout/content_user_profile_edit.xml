@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@drawable/pink_house"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".UserProfileEdit"
     tools:showIn="@layout/app_bar_user_profile_edit">
@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/orange_icon" />
+        app:srcCompat="@drawable/man2" />
 
     <EditText
         android:id="@+id/editText_first_name"
@@ -43,7 +43,6 @@
         android:background="@drawable/edittext_style"
         android:editable="false"
         android:ems="10"
-        android:inputType="none|number"
         android:text="Palisetti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -71,9 +70,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Name"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editText_first_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -82,9 +82,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Age"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editText_last_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -93,9 +94,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Username"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editText_username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -133,6 +136,7 @@
         android:background="@drawable/edittext_style"
         android:editable="false"
         android:ems="10"
+        android:hint="Enter 10-digit number"
         android:inputType="none|phone"
         android:text="9742720059"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,9 +150,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Phone no."
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editText_phone_no"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.183"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

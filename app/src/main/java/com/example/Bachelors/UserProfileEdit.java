@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.NumberUtils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -124,9 +126,9 @@ public class UserProfileEdit extends AppCompatActivity
 
                     username.setInputType(0);
                     username.setEnabled(false);
-                    phoneno.setInputType(1);
+                    phoneno.setInputType(InputType.TYPE_CLASS_PHONE);
                     firstname.setInputType(1);
-                    lastname.setInputType(1);
+                    lastname.setInputType(InputType.TYPE_CLASS_NUMBER);
                     buttonSaveChanges.setVisibility(View.VISIBLE);
                     buttonEdit.setVisibility(View.INVISIBLE);
 
@@ -141,7 +143,11 @@ public class UserProfileEdit extends AppCompatActivity
                 String lastnameString = lastname.getText().toString().trim();
                 String phonenoString = phoneno.getText().toString().trim();
 
-                if(!(TextUtils.isEmpty(phonenoString)||TextUtils.isEmpty(lastnameString)||TextUtils.isEmpty(firstnameString))){
+                if(phonenoString.length()!=10)
+                    Toast.makeText(UserProfileEdit.this,"Enter valid phone number",Toast.LENGTH_LONG).show();
+                else if(Integer.parseInt(lastnameString)>100 || Integer.parseInt(lastnameString)<18)
+                    Toast.makeText(UserProfileEdit.this,"Enter valid age",Toast.LENGTH_LONG).show();
+                else if(!(TextUtils.isEmpty(phonenoString)||TextUtils.isEmpty(lastnameString)||TextUtils.isEmpty(firstnameString))){
 
                     // check and update database
                     try {

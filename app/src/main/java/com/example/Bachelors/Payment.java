@@ -104,32 +104,34 @@ public class Payment extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 input_username = editText_username.getText().toString().trim();
-                input_amount = Integer.parseInt(editText_amount.getText().toString().trim());
-                databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(editText_amount.getText().toString().trim().isEmpty()||editText_username.getText().toString().trim().isEmpty())
+                    Toast.makeText(Payment.this,"Enter valid details",Toast.LENGTH_LONG).show();
+                else {
+                    input_amount = Integer.parseInt(editText_amount.getText().toString().trim());
+                    databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        for (DataSnapshot ds:dataSnapshot.getChildren()) {
-                            if((ds.child("email").getValue().toString().trim()).compareTo(input_username)==0) {
-                                required_id = ds.getKey();
-                                if(required_id.equals("none"))
-                                    Toast.makeText(Payment.this,"Enter valid username",Toast.LENGTH_LONG).show();
-
-                                else
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                if ((ds.child("email").getValue().toString().trim()).compareTo(input_username) == 0) {
+                                    required_id = ds.getKey();
+                                    check=1;
                                     lalala();
-                                break;
+                                    break;
+                                }
                             }
+
+                            if(check==0)
+                                Toast.makeText(Payment.this, "Enter valid username", Toast.LENGTH_LONG).show();
+
                         }
 
-                        System.out.println("laaaaaalalalal");
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                        }
+                    });
+                }
 
             }
 
@@ -210,6 +212,8 @@ public class Payment extends AppCompatActivity
                             sender.setAmount(input_amount);
                             receiver.setName(mUser.getEmail());
                             sender.setName(input_username);
+                            receiver.setDirection("received");
+                            sender.setDirection("sent");
                             databaseTransactions.child(mUser.getUid()).push().setValue(sender);
                             databaseTransactions.child(required_id).push().setValue(receiver);
 

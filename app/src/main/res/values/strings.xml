@@ -43,6 +43,7 @@
     <string name="add_property">Add property</string>
     <string name="view">view</string>
     <string name="update">update</string>
+    <string name="show_password">Show Password</string>
     <string name="delete">Delete</string>
     <string-array name="city">
         <item>Select city</item>
@@ -155,11 +156,11 @@
     <string name="coupons">coupons</string>
     <string name="title_activity_coupons">Coupons</string>
     <string name="grab_a_coupon">Grab a Coupon!!!!!</string>
-    <string name="owner4">Owner: Ranjana K \nPlace: Kolkata \nPhone No: 7338090713 \nCost: 3499</string>
-    <string name="owner3">Owner: Sanjana P \nPlace: Mangalore \nPhone No: 9482460200 \nCost: 5200</string>
-    <string name="owner2">Owner: Ankit \nPlace:Pune \nPhone No: 9671056323 \nCost: 3500</string>
-    <string name="owner1">Owner: Krishna \nPlace: Bangalore \nPhone No: 9245671891 \nCost: 5000</string>
-    <string name="owner5">Owner: Rahul K \nPlace: Delhi \nPhone No: 7482491733 \nCost: 4100</string>
+    <string name="owner4">Rooms in KOLKATA \nAverage Cost: 3499</string>
+    <string name="owner3">Rooms in MANGALORE \nAverage Cost: 1200</string>
+    <string name="owner2">Rooms in PUNE \nAverage Cost: 3500</string>
+    <string name="owner1">Rooms in BANGALORE \nAverage Cost: 5000</string>
+    <string name="owner5">Rooms in DELHI \nAverage Cost: 4100</string>
     <string name="add_this">Add this!!</string>
     <string name="offer1">NEW USER OFFER: \nGet 10% off on your first \nRoom booking.</string>
     <string name="offer2">EXCLUSIVE: Flat Rs. 500 Off \nGet flat Rs. 500 off \non minimum Rs. 1800.</string>

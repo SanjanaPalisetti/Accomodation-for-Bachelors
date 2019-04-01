@@ -13,12 +13,12 @@
 
     <!-- Login progress -->
     <!--<ProgressBar-->
-        <!--android:id="@+id/login_progress"-->
-        <!--style="?android:attr/progressBarStyleLarge"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:visibility="gone" />-->
+    <!--android:id="@+id/login_progress"-->
+    <!--style="?android:attr/progressBarStyleLarge"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:visibility="gone" />-->
 
     <ScrollView
         android:id="@+id/login_form"
@@ -64,15 +64,22 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColorHint="@color/colorPrimaryDark" />
+                    android:textColorHint="@color/colorPrimaryDark"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/show_password"/>
 
             </android.support.design.widget.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="41dp"
-                android:entries="@array/type" />
+            <!--<Spinner-->
+            <!--android:id="@+id/spinner"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="41dp"-->
+            <!--android:entries="@array/type" />-->
 
             <Button
                 android:id="@+id/email_sign_in_button"

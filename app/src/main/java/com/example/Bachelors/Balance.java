@@ -91,7 +91,7 @@ public class Balance extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 balance = Integer.parseInt(dataSnapshot.child("balance").getValue().toString());
-                display.setText(dataSnapshot.child("balance").getValue().toString());
+                display.setText("Rs. "+dataSnapshot.child("balance").getValue().toString());
 
             }
 
@@ -115,7 +115,6 @@ public class Balance extends AppCompatActivity
 
                 //changing value
                 balance += input_money;
-                System.out.println("--------------------"+balance+"----------"+input_money);
                 databaseUsers.child(id).child("balance").setValue(balance);
                 display.setText("Rs. "+(balance));
                 editText_add_money.setText("");

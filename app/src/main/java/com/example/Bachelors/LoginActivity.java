@@ -5,14 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.text.TextUtils;
+import android.support.v7.widget.AppCompatCheckBox;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,7 +35,7 @@ public class LoginActivity extends Activity {
     String Password;
     FirebaseAuth firebaseAuth;
     FirebaseUser mUser;
-
+    CheckBox checkBox;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstancesState) {
@@ -45,6 +50,22 @@ public class LoginActivity extends Activity {
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
         email_sign_in_button = findViewById(R.id.email_sign_in_button);
+        checkBox = findViewById(R.id.checkbox);
+        //edtPassword = (EditText) findViewById(R.id.password);
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    // show password
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    // hide password
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
         email_sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,41 +92,5 @@ public class LoginActivity extends Activity {
     }
 }
 
-//        email = (EditText)findViewById(R.id.email);
-//        password = (EditText)findViewById(R.id.password);
-//        spinner = (Spinner)findViewById(R.id.spinner);
-//        email_sign_in_button = (Button)findViewById(R.id.email_sign_in_button);
-//
-//        email_sign_in_button.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View v){
-//                Login();
-//            }
-//        });
-
-
-
-
-
-
-
-
-//    private void Login(){
-//        String Email = email.getText().toString().trim();
-//        String Password = password.getText().toString().trim();
-//        String Spinner = spinner.getSelectedItem().toString();
-//
-//        if(!((TextUtils.isEmpty(Email))||(TextUtils.isEmpty(Password))||(TextUtils.isEmpty(Spinner)))){
-//            //add here
-//        }
-//
-//        else{
-//
-//            Toast.makeText(this,"Enter details",Toast.LENGTH_LONG).show();
-//
-//        }
-//
-//    }
 
 

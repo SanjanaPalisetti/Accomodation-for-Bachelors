@@ -17,6 +17,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+//import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -34,12 +36,20 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import in.myinnos.androidscratchcard.ScratchCard;
 
 
@@ -55,7 +65,10 @@ public class Dashboard_common extends AppCompatActivity
     ImageView imageView2;
     ImageView imageView3;
     ImageView imageView4;
-
+    DatabaseReference ref;
+    ArrayList<property> list;
+    RecyclerView recyclerView;
+    SearchView searchView;
     Button  xcoupons;
     Button scratchCard;
     int currentPage = 0;
@@ -72,47 +85,47 @@ public class Dashboard_common extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_common);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ////
-    storageReference = FirebaseStorage.getInstance().getReference().child("Adds");
-   myCustomPageAdapter = new MyCustomPageAdapter(Dashboard_common.this);
-   viewPager = (ViewPager) findViewById(R.id.viewpage);
-   viewPager.setAdapter(myCustomPageAdapter);
-   imageView1 = (ImageView) findViewById(R.id.person_photo1);
-   temp = "appartment1.jpg";
-   fetch(temp,imageView1);
-   imageView2 = (ImageView) findViewById(R.id.person_photo2);
-         temp = "appartment2.jpg";
-   fetch(temp,imageView2);
-   imageView3 =(ImageView) findViewById(R.id.person_photo3);
-         temp = "appartment3.jpg";
-   fetch(temp,imageView3);
-   imageView4=(ImageView) findViewById(R.id.person_photo4);
-         temp = "appartment4.jpg";
-   fetch(temp,imageView4);
-   final Handler handler = new Handler();
-   final Runnable Update = new Runnable() {
-       @Override
-       public void run() {
-           if (currentPage == Num_pages) {
-               currentPage = 0;
-           }
-           viewPager.setCurrentItem(currentPage++,true);
-       }
+        storageReference = FirebaseStorage.getInstance().getReference().child("Adds");
+        myCustomPageAdapter = new MyCustomPageAdapter(Dashboard_common.this);
+        viewPager = (ViewPager) findViewById(R.id.viewpage);
+        viewPager.setAdapter(myCustomPageAdapter);
+        imageView1 = (ImageView) findViewById(R.id.bangalore);
+        temp = "appartment1.jpg";
+        fetch(temp,imageView1);
+        imageView2 = (ImageView) findViewById(R.id.pune);
+        temp = "appartment2.jpg";
+        fetch(temp,imageView2);
+        imageView3 =(ImageView) findViewById(R.id.mangalore);
+        temp = "appartment3.jpg";
+        fetch(temp,imageView3);
+        imageView4=(ImageView) findViewById(R.id.kolkata);
+        temp = "appartment4.jpg";
+        fetch(temp,imageView4);
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            @Override
+            public void run() {
+                if (currentPage == Num_pages) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++,true);
+            }
 
-   };
-   Timer swipeTimer = new Timer();
-   swipeTimer.schedule(new TimerTask() {
-       @Override
-       public void run() {
+        };
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
 
-           handler.post(Update);
-       }
-   },800,4500);
+                handler.post(Update);
+            }
+        },800,4500);
 //////////////////////////////////////
-
         xcoupons = findViewById(R.id.coupons);
         xcoupons.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,8 +169,60 @@ public class Dashboard_common extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);                              // changed
         navigationView.setNavigationItemSelectedListener(this);
+        /////////////////
+        ref= FirebaseDatabase.getInstance().getReference("Pproperty");
+        recyclerView=findViewById(R.id.rv);
+        searchView=findViewById(R.id.searchView);
 
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if(ref != null){
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+                        list=new ArrayList<>();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()){
+                            list.add(ds.getValue(property.class));
+                        }
+                        AdapterClass adapterClass = new AdapterClass(list);
+                        recyclerView.setAdapter(adapterClass);
+                    }
 
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(Dashboard_common.this,databaseError.getMessage(),Toast. LENGTH_SHORT).show();
+                }
+            });
+        }
+        if(searchView != null){
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    search(s);
+                    return true;
+                }
+            });
+        }
+    }
+    private void search(String str){
+        ArrayList<property> myList = new ArrayList<>();
+        for (property object : list){
+            if (object.getLocation().toLowerCase().contains(str.toLowerCase())){
+                myList.add(object);
+            }
+        }
+        AdapterClass adapterClass=new AdapterClass(myList);
+        recyclerView.setAdapter(adapterClass);
     }
 
     @Override
@@ -230,18 +295,18 @@ public class Dashboard_common extends AppCompatActivity
                 startActivity(sug);
                 break;
             case R.id.nav_wallet :
-                Intent w = new Intent(Dashboard_common.this,Wallet.class);
+                Intent w = new Intent(this,Wallet.class);
                 startActivity(w);
                 break;
 
         }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription(CHANNEL_DESC);
-                NotificationManager notificationManager = getSystemService(NotificationManager.class);
-                notificationManager.createNotificationChannel(channel);
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription(CHANNEL_DESC);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
 
 
 
@@ -253,14 +318,14 @@ public class Dashboard_common extends AppCompatActivity
     }
 
     private void displayNotif() {
-            NotificationCompat.Builder notif_builder = new NotificationCompat.Builder(this, CHANNEL_ID);
-            notif_builder.setSmallIcon(R.drawable.ic_notification);
-            notif_builder.setContentTitle("Bachelors: New notification");
-            notif_builder.setContentText("New request for Property.");
-            notif_builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationCompat.Builder notif_builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        notif_builder.setSmallIcon(R.drawable.ic_notification);
+        notif_builder.setContentTitle("Bachelors: New notification");
+        notif_builder.setContentText("New request for Property.");
+        notif_builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-            notificationManagerCompat.notify(1, notif_builder.build());
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, notif_builder.build());
     }
     public void fetch(String id , final ImageView view)
     {
@@ -288,4 +353,3 @@ public class Dashboard_common extends AppCompatActivity
 
 
 }
-

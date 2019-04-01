@@ -7,13 +7,15 @@ public class Transactions {
     int amount;
     String name;
     String date;
+    String direction;
 
     public Transactions() {}
 
-    public Transactions(int amount, String name, String date) {
+    public Transactions(int amount, String name, String date,String direction) {
         this.amount = amount;
         this.name = name;
         this.date = date;
+        this.direction = direction;
     }
 
     public int getAmount() {
@@ -39,4 +41,8 @@ public class Transactions {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getDirection() {return direction;}
+
+    public void setDirection(String direction) {this.direction = direction;}
 }

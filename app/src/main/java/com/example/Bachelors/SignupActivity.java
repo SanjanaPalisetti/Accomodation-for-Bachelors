@@ -112,12 +112,6 @@ public class SignupActivity extends AppCompatActivity implements Serializable {
                     Toast.makeText(SignupActivity.this,"Enter details",Toast.LENGTH_LONG).show();
                 }
 
-
-                //if (s.equals("Tenant")) {
-                //    startActivity(new Intent(v.getContext(), RegistrationTenant.class));
-                //} else if (s.equals("Owner")) {
-                //    startActivity(new Intent(v.getContext(), ownerReg.class));
-                //}
             }
         });
 

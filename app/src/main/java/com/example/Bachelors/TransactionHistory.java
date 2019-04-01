@@ -1,10 +1,16 @@
 package com.example.Bachelors;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -36,6 +42,11 @@ public class TransactionHistory extends AppCompatActivity
     FirebaseAuth mAuth, firebaseAuth;
     FirebaseUser mUser;
     Transactions trans = new Transactions();
+    String get_amount;
+
+    private static final String CHANNEL_ID = "Bach";
+    private static final String CHANNEL_NAME = "Bach";
+    private static final String CHANNEL_DESC = "Bach";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +97,13 @@ public class TransactionHistory extends AppCompatActivity
                 for(DataSnapshot ds: dataSnapshot.getChildren())
                 {
                     trans = ds.getValue(Transactions.class);
-                    myArrayList.add("\n" + trans.getAmount()+ trans.getName()+"\n"+trans.getDate()+"\n");
+
+                    if(trans.getDirection().equals("sent"))
+                        get_amount = "-" + Integer.toString(trans.getAmount());
+                    else
+                        get_amount = "+" + Integer.toString(trans.getAmount());
+
+                    myArrayList.add("\n" + get_amount + "\n" + trans.getName() + "\n" + trans.getDate()+"\n");
                 }
                 listView.setAdapter(myArrayAdapter);
             }
@@ -136,22 +153,64 @@ public class TransactionHistory extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch(id) {
 
-        } else if (id == R.id.nav_slideshow) {
+            case R.id.nav_add_property :
+                Intent a = new Intent(this,AddProperty.class);
+                startActivity(a);
+                break;
+            case R.id.nav_chat :
+                Intent c = new Intent(this,UsersActivity.class);
+                startActivity(c);
+                break;
+            case R.id.nav_dashboard :
+                Intent d = new Intent(this,Dashboard_common.class);
+                startActivity(d);
+                break;
+            case R.id.nav_notifications :
+//                Intent a = new Intent(Dashboard_common.this,Dashboard_common.class);
+//                startActivity(a);
+                displayNotif();
+                break;
+            case R.id.nav_profile :
+                Intent p = new Intent(this, UserProfileEdit.class);
+                startActivity(p);
+                break;
+            case R.id.nav_sign_out :
+                Intent l = new Intent(this,MainActivity.class);
+                startActivity(l);
+                break;
+            case R.id.nav_suggestions :
+                Intent s = new Intent(this,Review.class);
+                startActivity(s);
+                break;
+            case R.id.nav_wallet :
+                Intent w = new Intent(this,Wallet.class);
+                startActivity(w);
+                break;
 
-        } else if (id == R.id.nav_manage) {
+        }
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription(CHANNEL_DESC);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void displayNotif() {
+        NotificationCompat.Builder notif_builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        notif_builder.setSmallIcon(R.drawable.ic_notification);
+        notif_builder.setContentTitle("Bachelors: New notification");
+        notif_builder.setContentText("New request for Property.");
+        notif_builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, notif_builder.build());
     }
 }
